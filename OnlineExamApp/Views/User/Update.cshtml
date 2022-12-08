@@ -1,0 +1,71 @@
+﻿@model OnlineExamApp.Entities.User
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/js/jquery.min.js"></script>
+<link href="/js/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+<script src="/js/sweetalert2/sweetalert2.min.js"></script>
+<script src="~/js/pageJs/user.js"></script>
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Default form</h4>
+                        <p class="card-description">
+                            Kullanıcı Güncelleme
+                        </p>
+                        <form class="forms-sample">
+                            @Html.HiddenFor(model => model.Id, new { id = "Id" })
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Adı</label>
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { id = "Name", @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Soyadı</label>
+                                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { id = "Surname", @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mail Adres</label>
+                                @Html.EditorFor(model => model.Mail, new { htmlAttributes = new { id = "Mail", @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Şifre</label>
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { id = "Password", @class = "form-control" } })
+                            </div>
+                            @*<div class="form-group">
+                                <label for="exampleInputPassword1">Sınav Linki</label>
+                                <input type="text" name="Link" class="form-control" id="Link">
+                            </div>*@
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Sınav</label>
+                                @Html.DropDownListFor(x => x.ExamId, new SelectList((System.Collections.IEnumerable)ViewData["items"], "Value", "Text"), new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Kullanıcı Türü</label>
+                                <select name="userType" id="userType">
+                                    <option value="1">Aday</option>
+                                    <option value="2">Yönetici</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-primary me-2" onclick="UpdateUser()">Kaydet</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights reserved.</span>
+        </div>
+    </footer>
+    <!-- partial -->
+</div>
+
